@@ -1,0 +1,33 @@
+{
+  "name": "apilogin",
+  "version": "1.0.0",
+  "description": "api de login via token ",
+  "main": "cluster.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "login",
+    "api",
+    "token"
+  ],
+  "author": "Daniel Falcao",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "consign": "^0.1.6",
+    "express": "^4.17.1",
+    "express-validator": "^6.6.1",
+    "jwt-simple": "^0.5.6",
+    "memcached": "^2.2.2",
+    "morgan": "^1.10.0",
+    "mysql2": "^2.2.5",
+    "restify": "^8.5.1",
+    "sequelize": "^6.3.5",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
