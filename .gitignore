@@ -1,6 +1,7 @@
 # System #
 ######################
 Source/config/database.js
+Source/config/auth.json
 .bash_profile
 .bashrc
 temporary.html
