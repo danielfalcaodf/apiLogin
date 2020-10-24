@@ -5,7 +5,7 @@ const authConfig = require("../config/auth");
 
 generateToken = (param = {}) => {
   return jwt.sign(param, authConfig.secret, {
-    expiresIn: 86400,
+    expiresIn: 10,
   });
 };
 module.exports = {
@@ -36,5 +36,11 @@ module.exports = {
     user.passwd = undefined;
 
     res.send({ user, token: generateToken({ id: user.id }) });
+  },
+  async isAuth(req, res) {
+    const user = await User.findOne({ where: { id: req.userId } });
+    if (!user) return res.status(400).send({ error: "Usuario não encontrado" });
+    user.passwd = undefined;
+    res.status(200).send({ user });
   },
 };

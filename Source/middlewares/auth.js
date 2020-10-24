@@ -1,6 +1,20 @@
 const jwt = require("jsonwebtoken");
 const authConfig = require("../config/auth.json");
+msgJWT = (value) => {
+  switch (value) {
+    case "invalid token":
+      value = "Token inválido";
+      break;
+    case "jwt expired":
+      value = "Token expirado";
+      break;
 
+    default:
+      value = "Token inválido";
+      break;
+  }
+  return value;
+};
 module.exports = (req, res, next) => {
   const authHeader = req.headers.authorization;
 
@@ -19,7 +33,10 @@ module.exports = (req, res, next) => {
     return res.status(401).send({ error: "Token formato errado" });
 
   jwt.verify(token, authConfig.secret, (err, decoded) => {
-    if (err) return res.status(401).send({ error: "Token invalido" });
+    if (err) {
+      return res.status(401).send({ error: msgJWT(err.message), err });
+    }
+
     req.userId = decoded.id;
     return next();
   });
